@@ -14,14 +14,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
 
 	 
-	    @GetMapping("/")
+	    @GetMapping("/user")
 	    public String userForm(Locale locale, Model model) {
 	        model.addAttribute("users", "Hello");
 	        return "editUsers";
 	    }
 	    
 	    
-	    @GetMapping("/user")
+	    @GetMapping("/editUser")
 	    public String user(Locale locale, Model model) {
 	        model.addAttribute("users", "Hello");
 	        return "editUsers";

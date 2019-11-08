@@ -1,57 +1,60 @@
 package com.spring.demo.mvc.model;
 
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "USERS")
 public class User {
+  @Id
+  @Column(name = "USERNAME")
+  private String username;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "USER_ID")
-	private Long id;
+  @Column(name = "PASSWORD", nullable = false)
+  private String password;
 
-	@Column(name = "USER_NAME")
-	@Size(max = 20, min = 3, message = "{user.name.invalid}")
-	@NotEmpty(message="Please Enter your name")
-	private String name;
+  @Column(name = "ENABLED", nullable = false)
+  private boolean enabled;
 
-	@Column(name = "USER_EMAIL", unique = true)
-	@Email(message = "{user.email.invalid}")
-	@NotEmpty(message="Please Enter your email")
-	private String email;
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+  private Set<Authorities> authorities = new HashSet<>();
 
-	public Long getId() {
-		return id;
-	}
+  public String getUsername() {
+    return username;
+  }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-	public String getName() {
-		return name;
-	}
+  public String getPassword() {
+    return password;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-	public String getEmail() {
-		return email;
-	}
+  public boolean isEnabled() {
+    return enabled;
+  }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+  public void setEnabled(boolean enabled) {
+    this.enabled = enabled;
+  }
+
+  public Set<Authorities> getAuthorities() {
+    return authorities;
+  }
+
+  public void setAuthorities(Set<Authorities> authorities) {
+    this.authorities = authorities;
+  }
 }
