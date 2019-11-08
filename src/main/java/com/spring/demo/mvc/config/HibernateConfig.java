@@ -29,17 +29,6 @@ public class HibernateConfig {
 	@Autowired
 	private Environment env;
 
-	
-	
-	
-	//	@Bean
-	//	public LocalSessionFactoryBean getSessionFactory() {
-	//		LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
-	//		factoryBean.setConfigLocation(context.getResource("classpath:hibernate.cfg.xml"));
-	//		factoryBean.setAnnotatedClasses( User.class );
-	//		return factoryBean;
-	//	}
-
 
 
 	@Bean
@@ -49,11 +38,6 @@ public class HibernateConfig {
 		Properties props = new Properties();
 
 		// Setting JDBC properties
-//		props.put(DRIVER, env.getProperty("mysql.driver"));
-//		props.put(URL, env.getProperty("mysql.jdbcUrl"));
-//		props.put(USER, env.getProperty("mysql.username"));
-//		props.put(PASS, env.getProperty("mysql.password"));
-	    
 		props.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
 		props.put("hibernate.connection.driver_class", env.getProperty("mysql.driver"));
 		props.put("hibernate.connection.url", env.getProperty("mysql.jdbcUrl"));
